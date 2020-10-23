@@ -311,6 +311,7 @@ class Blackjack:
         dealer_hand = hole if not outcome else ", ".join(deck.fmt_hand(dh))
 
         embed = discord.Embed(colour=0xFF0000)
+        embed1.set_thumbnail(url="https://cdn.discordapp.com/attachments/752998969449382059/769187995982102528/cards.gif")
         embed.add_field(
             name=_("{}'s Hand").format(ctx.author.name),
             value=hand.format(", ".join(deck.fmt_hand(ph)), count1),
