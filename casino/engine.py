@@ -264,6 +264,7 @@ class GameEngine(Database):
         currency = await bank.get_currency_name(self.guild)
         bal_msg = _("**Remaining Balance:** {} {}").format(humanize_number(balance), currency)
         embed = discord.Embed()
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/752998969449382059/769187995982102528/cards.gif")
         embed.title = _("{} Casino | {}").format(settings["Settings"]["Casino_Name"], self.game)
 
         if isinstance(msg, discord.Embed):
