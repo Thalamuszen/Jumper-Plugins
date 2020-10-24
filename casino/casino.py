@@ -176,14 +176,14 @@ class Casino(Database, commands.Cog):
 
     @commands.group()
     @commands.guild_only()
-    async def casinosys(self, ctx):
+    async def casino(self, ctx):
         """Interacts with the Casino system.
 
         Use help on Casino (upper case) for more commands.
         """
         pass
 
-    @casinosys.command()
+    @casino.command()
     async def memberships(self, ctx):
         """Displays a list of server/global memberships."""
         data = await super().get_data(ctx)
@@ -235,7 +235,7 @@ class Casino(Database, commands.Cog):
         embed.set_footer(text=info)
         await ctx.send(embed=embed)
 
-    @casinosys.command()
+    @casino.command()
     @checks.admin_or_permissions(administrator=True)
     async def releasecredits(self, ctx, player: Union[discord.Member, discord.User]):
         """Approves pending currency for a user.
@@ -283,7 +283,7 @@ class Casino(Database, commands.Cog):
         else:
             await ctx.send(_("Action canceled."))
 
-    @casinosys.command()
+    @casino.command()
     @checks.admin_or_permissions(administrator=True)
     async def resetuser(self, ctx: commands.Context, user: discord.Member):
         """Reset a user's cooldowns, stats, or everything."""
@@ -307,7 +307,7 @@ class Casino(Database, commands.Cog):
         else:
             await super()._reset_player_all(ctx, user)
 
-    @casinosys.command()
+    @casino.command()
     @checks.admin_or_permissions(administrator=True)
     async def resetinstance(self, ctx: commands.Context):
         """Reset global/server cooldowns, settings, memberships, or everything."""
@@ -335,7 +335,7 @@ class Casino(Database, commands.Cog):
         else:
             await super()._reset_all_settings(ctx)
 
-    @casinosys.command()
+    @casino.command()
     @checks.is_owner()
     async def wipe(self, ctx: commands.Context):
         """Completely wipes casino data."""
@@ -357,7 +357,7 @@ class Casino(Database, commands.Cog):
         else:
             return await ctx.send(_("Wipe canceled."))
 
-    @casinosys.command()
+    @casino.command()
     @checks.admin_or_permissions(administrator=True)
     async def assignmem(
         self,
@@ -386,7 +386,7 @@ class Casino(Database, commands.Cog):
         )
         await ctx.send(msg)
 
-    @casinosys.command()
+    @casino.command()
     @checks.admin_or_permissions(administrator=True)
     async def revokemem(self, ctx: commands.Context, player: Union[discord.Member, discord.User]):
         """Revoke an assigned membership.
@@ -407,7 +407,7 @@ class Casino(Database, commands.Cog):
             ).format(ctx.author.name, player.name)
         )
 
-    @casinosys.command()
+    @casino.command()
     @checks.admin_or_permissions(administrator=True)
     async def admin(self, ctx: commands.Context):
         """A list of Admin level and above commands for Casino."""
@@ -431,7 +431,7 @@ class Casino(Database, commands.Cog):
         embed.set_footer(text=_("With great power, comes great responsibility."))
         await ctx.send(embed=embed)
 
-    @casinosys.command()
+    @casino.command()
     async def info(self, ctx: commands.Context):
         """Shows information about Casino.
 
@@ -468,7 +468,7 @@ class Casino(Database, commands.Cog):
         ).format(t, **settings)
         await ctx.send(box(msg, lang="cpp"))
 
-    @casinosys.command()
+    @casino.command()
     async def stats(
         self, ctx: commands.Context, player: Union[discord.Member, discord.User] = None
     ):
@@ -510,7 +510,7 @@ class Casino(Database, commands.Cog):
         embed.set_footer(text=disclaimer)
         await ctx.send(embed=embed)
 
-    @casinosys.command()
+    @casino.command()
     @checks.admin_or_permissions(administrator=True)
     async def memdesigner(self, ctx: commands.Context):
         """A process to create, edit, and delete memberships."""
@@ -526,7 +526,7 @@ class Casino(Database, commands.Cog):
 
         await Membership(ctx, timeout, choice.content.lower()).process()
 
-    @casinosys.command()
+    @casino.command()
     async def version(self, ctx: commands.Context):
         """Shows the current Casino version."""
         await ctx.send("Casino is running version {}.".format(__version__))
