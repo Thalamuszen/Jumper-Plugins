@@ -176,7 +176,7 @@ class Casino(Database, commands.Cog):
 
     @commands.group()
     @commands.guild_only()
-    async def casino(self, ctx):
+    async def casinosys(self, ctx):
         """Interacts with the Casino system.
 
         Use help on Casino (upper case) for more commands.
