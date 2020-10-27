@@ -169,12 +169,8 @@ class ShopMenu:
 
     def build_embed(self, options, footer):
         instructions = (
-            "Type the number for your selection or one of the words below "
-            "for page navigation if there are multiple pages available.\n"
-            "Next page: Type n, next, or >\n"
-            "Previous page: Type b, back, or <\n"
-            "Return to previous menu: Type p or prev\n"
-            "Exit menu system: Type e, x, or exit"
+            "Type the number for your selection"
+            "Return to previous menu: Type p"
         )
 
         if self.shop is None and self.mode == 0:
