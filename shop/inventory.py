@@ -80,11 +80,7 @@ class Inventory:
         title = "{}'s Inventory".format(self.ctx.author.name)
         footer = "You are viewing page {} of {}.".format(page + 1 if page > 0 else 1, len(groups))
         instructions = (
-            "Type the number for your selection or one of the words below "
-            "for page navigation if there are multiple pages available.\n"
-            "Next page: Type n, next, or >\n"
-            "Previous page: Type b, back, or <\n"
-            "Exit menu system: Type e, x, or exit"
+            "Type the number for your selection"
         )
         embed = discord.Embed(color=0x5EC6FF)
         embed.add_field(name=title, value=options, inline=False)
