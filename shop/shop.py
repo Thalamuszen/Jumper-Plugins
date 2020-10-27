@@ -130,9 +130,8 @@ class Shop(commands.Cog):
         Type `!inv` to check your inventory"""
         pass
 
-    @shop.command()
     @commands.max_concurrency(1, commands.BucketType.user)
-    async def buy(self, ctx, *purchase):
+    async def buys(self, ctx, *purchase):
         """
         Go Shopping!
         """
@@ -178,7 +177,6 @@ class Shop(commands.Cog):
             await ctx.send("Transaction canceled.")
 
     @commands.max_concurrency(1, commands.BucketType.user)
-    @shop.command()
     async def redeem(self, ctx, *, item: str):
         """Redeems an item in your inventory."""
         try:
