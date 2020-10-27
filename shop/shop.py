@@ -131,20 +131,8 @@ class Shop(commands.Cog):
     @shop.command()
     @commands.max_concurrency(1, commands.BucketType.user)
     async def buy(self, ctx, *purchase):
-        """Shop menu appears with no purchase order.
-
-        When no argument is specified for purchase, it will bring up the
-        shop menu.
-
-        Using the purchase argument allows direct purchases from a shop.
-        The order is "Shop Name" "Item Name" and names with spaces
-        must include quotes.
-
-        Examples
-        --------
-        [p]shop buy \"Secret Shop\" oil
-        [p]shop buy Junkyard tire
-        [p]shop buy \"Holy Temple\" \"Healing Potion\"
+        """
+        Go Shopping!
         """
         try:
             instance = await self.get_instance(ctx, settings=True)
