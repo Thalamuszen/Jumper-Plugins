@@ -843,17 +843,12 @@ class Shop(commands.Cog):
         e.add_field(name=item, value=data[item]["Info"], inline=False)
         if data[item]["Type"].lower() == "Role":
             await ctx.send(
-                "{} Do you wish to redeem {}? This will grant you the role assigned to "
-                "this item and it will be removed from your inventory "
-                "permanently.".format(ctx.author.mention, item),
+                "{} Do you wish to redeem {}?".format(ctx.author.mention, item),
                 embed=e,
             )
         else:
             await ctx.send(
-                "{} Do you wish to redeem {}? This will add the item to the pending "
-                "list for an admin to review and grant. The item will be removed from "
-                "your inventory while this is "
-                "processing.".format(ctx.author.mention, item),
+                "{} Do you wish to redeem {}?".format(ctx.author.mention, item),
                 embed=e,
             )
         try:
