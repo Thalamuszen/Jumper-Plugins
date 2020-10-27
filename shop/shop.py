@@ -920,8 +920,7 @@ class ShopManager:
         e = discord.Embed(color=await self.ctx.embed_colour())
         e.add_field(name=item, value=item_data["Info"], inline=False)
         text = (
-            f"How many {item} would you like to purchase?\n*If this "
-            f"is a random item, you can only buy 1 at a time.*"
+            f"How many {item} would you like to purchase?"
         )
         await self.ctx.send(content=text, embed=e)
 
