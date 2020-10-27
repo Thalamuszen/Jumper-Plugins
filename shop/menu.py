@@ -169,7 +169,7 @@ class ShopMenu:
 
     def build_embed(self, options, footer):
         instructions = (
-            "Type the number for your selection"
+            "Type the number for your selection\n"
             "Return to previous menu: Type p"
         )
 
