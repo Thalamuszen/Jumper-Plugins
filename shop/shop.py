@@ -125,7 +125,9 @@ class Shop(commands.Cog):
 
     @commands.group(autohelp=True)
     async def shop(self, ctx):
-        """Shop group command"""
+        """Shop group command
+        
+        Type `!inv` to check your inventory"""
         pass
 
     @shop.command()
