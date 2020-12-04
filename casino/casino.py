@@ -112,7 +112,7 @@ class Casino(Database, commands.Cog):
         if choice.lower() not in ("heads", "tails", "h", "t"):
             return await ctx.send("You must bet heads or tails.")
 
-        await Core(self.old_message_cache).play_coin(ctx, bet, choice)
+        await Core(self.old_message_cache, self.bot).play_coin(ctx, bet, choice)
 
     @commands.command()
     @commands.guild_only()
