@@ -56,7 +56,14 @@ class Core:
         self.bot = bot
 
     @game_engine("Allin")
-    async def play_allin(self, ctx, bet, multiplier):        
+    async def play_allin(self, ctx, bet, multiplier):
+        #Daily cog input.
+        memberdata = await self.bot.get_cog("Daily").config.member(ctx.author).all()
+        gambling = memberdata["gambling"]
+        gambling_count = memberdata["gambling_count"]
+        gambling_quest = memberdata["gambling_quest"]
+        gambling_credits = memberdata["gambling_credits"]
+        #end        
         message = await ctx.send(
             _("You put all your chips into the machine and pull the lever...")
         )
@@ -70,6 +77,16 @@ class Core:
             bet *= multiplier
         else:
             msg = _("Nothing happens. You stare at the machine contemplating your decision.")
+        #Gambling module quest check/completion
+        await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
+        gambling_count = gambling_count + 1
+        if gambling_count == gambling_quest:
+            if gambling == False:
+                credits = int(gambling_credits)
+                await bank.deposit_credits(ctx.author, credits)
+                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {gambling_name}")
+            await self.bot.get_cog("Daily").config.member(ctx.author).gambling.set(1)
+        #end            
         return outcome == 0, bet, msg, message
 
     @game_engine("Coin", (_("heads"), _("tails")))
@@ -99,10 +116,27 @@ class Core:
         
     @game_engine("Cups", ("1", "2", "3"))
     async def play_cups(self, ctx, bet, choice):
+        #Daily cog input.
+        memberdata = await self.bot.get_cog("Daily").config.member(ctx.author).all()
+        gambling = memberdata["gambling"]
+        gambling_count = memberdata["gambling_count"]
+        gambling_quest = memberdata["gambling_quest"]
+        gambling_credits = memberdata["gambling_credits"]
+        #end        
         message = await ctx.send(_("The cups start shuffling along the table..."))
         await asyncio.sleep(3)
         outcome = random.randint(1, 3)
         msg = _("The coin was under cup {}!").format(outcome)
+        #Gambling module quest check/completion
+        await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
+        gambling_count = gambling_count + 1
+        if gambling_count == gambling_quest:
+            if gambling == False:
+                credits = int(gambling_credits)
+                await bank.deposit_credits(ctx.author, credits)
+                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {gambling_name}")
+            await self.bot.get_cog("Daily").config.member(ctx.author).gambling.set(1)
+        #end        
         return int(choice) == outcome, bet, msg, message
 
     @game_engine("Dice")
