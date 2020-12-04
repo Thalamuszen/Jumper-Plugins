@@ -63,6 +63,7 @@ class Core:
         gambling_count = memberdata["gambling_count"]
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
+        currency_name = await bank.get_currency_name(ctx.guild)
         #end        
         message = await ctx.send(
             _("You put all your chips into the machine and pull the lever...")
@@ -84,7 +85,7 @@ class Core:
             if gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
-                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {gambling_name}")
+                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
             await self.bot.get_cog("Daily").config.member(ctx.author).gambling.set(1)
         #end            
         return outcome == 0, bet, msg, message
@@ -97,6 +98,7 @@ class Core:
         gambling_count = memberdata["gambling_count"]
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
+        currency_name = await bank.get_currency_name(ctx.guild)
         #end
         message = await ctx.send(_("The coin flips into the air..."))
         await asyncio.sleep(2)
@@ -109,7 +111,7 @@ class Core:
             if gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
-                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {gambling_name}")
+                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
             await self.bot.get_cog("Daily").config.member(ctx.author).gambling.set(1)
         #end
         return choice.lower() in outcome, bet, msg, message
@@ -122,6 +124,7 @@ class Core:
         gambling_count = memberdata["gambling_count"]
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
+        currency_name = await bank.get_currency_name(ctx.guild)
         #end        
         message = await ctx.send(_("The cups start shuffling along the table..."))
         await asyncio.sleep(3)
@@ -134,7 +137,7 @@ class Core:
             if gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
-                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {gambling_name}")
+                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
             await self.bot.get_cog("Daily").config.member(ctx.author).gambling.set(1)
         #end        
         return int(choice) == outcome, bet, msg, message
@@ -147,6 +150,7 @@ class Core:
         gambling_count = memberdata["gambling_count"]
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
+        currency_name = await bank.get_currency_name(ctx.guild)
         #end        
         message = await ctx.send(_("The dice strike the back of the table and begin to tumble into place..."))
         await asyncio.sleep(2)
@@ -161,7 +165,7 @@ class Core:
             if gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
-                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {gambling_name}")
+                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
             await self.bot.get_cog("Daily").config.member(ctx.author).gambling.set(1)
         #end        
         return outcome in (2, 7, 11, 12), bet, msg, message
@@ -174,6 +178,7 @@ class Core:
         gambling_count = memberdata["gambling_count"]
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
+        currency_name = await bank.get_currency_name(ctx.guild)
         #end        
         message = await ctx.send(_("The dice hit the table and slowly fall into place..."))
         await asyncio.sleep(2)
@@ -197,7 +202,7 @@ class Core:
             if gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
-                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {gambling_name}")
+                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
             await self.bot.get_cog("Daily").config.member(ctx.author).gambling.set(1)
         #end
         return choice.lower() in outcome, bet, msg, message
@@ -210,6 +215,7 @@ class Core:
         gambling_count = memberdata["gambling_count"]
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
+        currency_name = await bank.get_currency_name(ctx.guild)
         #end
         #Gambling module quest check/completion
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
@@ -218,7 +224,7 @@ class Core:
             if gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
-                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {gambling_name}")
+                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
             await self.bot.get_cog("Daily").config.member(ctx.author).gambling.set(1)
         #end        
         return await self._craps_game(ctx, bet)
@@ -281,6 +287,7 @@ class Blackjack:
         gambling_count = memberdata["gambling_count"]
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
+        currency_name = await bank.get_currency_name(ctx.guild)
         #end        
         ph, dh, amt, msg = await self.blackjack_game(ctx, bet)
         result = await self.blackjack_results(ctx, amt, ph, dh, message=msg)
@@ -291,7 +298,7 @@ class Blackjack:
             if gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
-                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {gambling_name}")
+                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
             await self.bot.get_cog("Daily").config.member(ctx.author).gambling.set(1)
         #end        
         return result
@@ -460,6 +467,7 @@ class War:
         gambling_count = memberdata["gambling_count"]
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
+        currency_name = await bank.get_currency_name(ctx.guild)
         #end        
         outcome, player_card, dealer_card, amount, msg = await self.war_game(ctx, bet)
         #Gambling module quest check/completion
@@ -469,7 +477,7 @@ class War:
             if gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
-                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {gambling_name}")
+                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
             await self.bot.get_cog("Daily").config.member(ctx.author).gambling.set(1)
         #end        
         return await self.war_results(outcome, player_card, dealer_card, amount, message=msg)
@@ -586,6 +594,7 @@ class Double:
         gambling_count = memberdata["gambling_count"]
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
+        currency_name = await bank.get_currency_name(ctx.guild)
         #end        
         count, amount, message = await self.double_game(ctx, bet)
         #Gambling module quest check/completion
@@ -595,7 +604,7 @@ class Double:
             if gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
-                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {gambling_name}")
+                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
             await self.bot.get_cog("Daily").config.member(ctx.author).gambling.set(1)
         #end        
         return await self.double_results(ctx, count, amount, message=message)
