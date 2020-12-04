@@ -572,8 +572,9 @@ class War:
 class Double:
     """A simple class for the Double Or Nothing game."""
 
-    def __init__(self, old_message_cache):
+    def __init__(self, old_message_cache, bot):
         self.old_message_cache = old_message_cache
+        self.bot = bot
 
     @game_engine("Double")
     async def play(self, ctx, bet):
