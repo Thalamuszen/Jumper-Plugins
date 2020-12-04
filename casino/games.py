@@ -54,7 +54,7 @@ class Core:
         self.old_message_cache = old_message_cache
 
     @game_engine("Allin")
-    async def play_allin(self, ctx, bet, multiplier):
+    async def play_allin(self, ctx, bet, multiplier):        
         message = await ctx.send(
             _("You put all your chips into the machine and pull the lever...")
         )
@@ -72,10 +72,27 @@ class Core:
 
     @game_engine("Coin", (_("heads"), _("tails")))
     async def play_coin(self, ctx, bet, choice):
+        #Daily cog input.
+        memberdata = await self.bot.get_cog("Daily").config.member(ctx.author).all()
+        gambling = memberdata["gambling"]
+        gambling_count = memberdata["gambling_count"]
+        gambling_quest = memberdata["gambling_quest"]
+        gambling_credits = memberdata["gambling_credits"]
+        #end
         message = await ctx.send(_("The coin flips into the air..."))
         await asyncio.sleep(2)
         outcome = random.choice((_("heads"), _("tails")))
         msg = _("The coin landed on {}!").format(outcome)
+        #Gambling module quest check/completion
+        await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
+        gambling_count = gambling_count + 1
+        if gambling_count == gambling_quest:
+            if gambling == False:
+                credits = int(gambling_credits)
+                await bank.deposit_credits(ctx.author, credits)
+                await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {gambling_name}")
+            await self.bot.get_cog("Daily").config.member(ctx.author).gambling.set(1)
+        #end
         return choice.lower() in outcome, bet, msg, message
         
     @game_engine("Cups", ("1", "2", "3"))
@@ -173,7 +190,6 @@ class Blackjack:
     async def play(self, ctx, bet):
         ph, dh, amt, msg = await self.blackjack_game(ctx, bet)
         result = await self.blackjack_results(ctx, amt, ph, dh, message=msg)
-        await ctx.send("Wibble wobble")
         return result
 
     @game_engine(name="Blackjack")
