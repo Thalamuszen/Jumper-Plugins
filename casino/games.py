@@ -51,8 +51,9 @@ class Core:
         second roll to win.
     """
 
-    def __init__(self, old_message_cache):
+    def __init__(self, old_message_cache, bot):
         self.old_message_cache = old_message_cache
+        self.bot = bot
 
     @game_engine("Allin")
     async def play_allin(self, ctx, bet, multiplier):        
