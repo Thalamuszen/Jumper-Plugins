@@ -7,6 +7,7 @@ from .deck import Deck
 from .engine import game_engine
 
 # Red
+from redbot.core.bot import Red
 from redbot.core import bank
 from redbot.core.i18n import Translator
 from redbot.core.errors import BalanceTooHigh
@@ -50,8 +51,9 @@ class Core:
         second roll to win.
     """
 
-    def __init__(self, old_message_cache):
+    def __init__(self, old_message_cache, bot: Red):
         self.old_message_cache = old_message_cache
+        self.bot = bot
 
     @game_engine("Allin")
     async def play_allin(self, ctx, bet, multiplier):        
