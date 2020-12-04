@@ -76,8 +76,9 @@ class Core:
         await asyncio.sleep(2)
         outcome = random.choice((_("heads"), _("tails")))
         msg = _("The coin landed on {}!").format(outcome)
+        await ctx.send("Wibble wobble")
         return choice.lower() in outcome, bet, msg, message
-
+        
     @game_engine("Cups", ("1", "2", "3"))
     async def play_cups(self, ctx, bet, choice):
         message = await ctx.send(_("The cups start shuffling along the table..."))
