@@ -75,7 +75,7 @@ class Casino(Database, commands.Cog):
             return await ctx.send("Your multiplier must be 2 or higher.")
 
         bet = await bank.get_balance(ctx.author)
-        await Core(self.old_message_cache).play_allin(ctx, bet, multiplier)
+        await Core(self.old_message_cache, self.bot).play_allin(ctx, bet, multiplier)
 
     @commands.command(name="blackjack", aliases=["bj", "21"])
     @commands.guild_only()
@@ -84,7 +84,7 @@ class Casino(Database, commands.Cog):
 
         Blackjack supports doubling down, but not split.
         """
-        await Blackjack(self.old_message_cache).play(ctx, bet)
+        await Blackjack(self.old_message_cache, self.bot).play(ctx, bet)
 
     @commands.command()
     @commands.guild_only()
@@ -100,7 +100,7 @@ class Casino(Database, commands.Cog):
         Every bet is considered a 'Pass Line' bet.
         """
 
-        await Core(self.old_message_cache).play_craps(ctx, bet)
+        await Core(self.old_message_cache, self.bot).play_craps(ctx, bet)
 
     @commands.command()
     @commands.guild_only()
@@ -121,7 +121,7 @@ class Casino(Database, commands.Cog):
 
         Must pick 1, 2, or 3.
         """
-        await Core(self.old_message_cache).play_cups(ctx, bet, cup)
+        await Core(self.old_message_cache, self.bot).play_cups(ctx, bet, cup)
 
     @commands.command()
     @commands.guild_only()
@@ -130,7 +130,7 @@ class Casino(Database, commands.Cog):
 
         Just place a bet. No need to pick a number.
         """
-        await Core(self.old_message_cache).play_dice(ctx, bet)
+        await Core(self.old_message_cache, self.bot).play_dice(ctx, bet)
 
     @commands.command(aliases=["don", "x2"])
     @commands.guild_only()
@@ -140,7 +140,7 @@ class Casino(Database, commands.Cog):
         Continue to try to double your bet until
         you cash out or lose it all.
         """
-        await Double(self.old_message_cache).play(ctx, bet)
+        await Double(self.old_message_cache, self.bot).play(ctx, bet)
 
     @commands.command(aliases=["hl"])
     @commands.guild_only()
@@ -149,13 +149,13 @@ class Casino(Database, commands.Cog):
 
         Acceptable choices are high, hi, low, lo, 7, or seven.
         """
-        await Core(self.old_message_cache).play_hilo(ctx, bet, choice)
+        await Core(self.old_message_cache, self.bot).play_hilo(ctx, bet, choice)
 
     @commands.command()
     @commands.guild_only()
     async def war(self, ctx: commands.Context, bet: int):
         """Play a modified game of war."""
-        await War(self.old_message_cache).play(ctx, bet)
+        await War(self.old_message_cache, self.bot).play(ctx, bet)
 
     @commands.command(hidden=True)
     @commands.is_owner()
