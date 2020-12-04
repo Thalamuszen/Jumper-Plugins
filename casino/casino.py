@@ -140,7 +140,7 @@ class Casino(Database, commands.Cog):
         Continue to try to double your bet until
         you cash out or lose it all.
         """
-        await Double(self.old_message_cache, self.bot).play(ctx, bet)
+        await Double(self.old_message_cache).play(ctx, bet)
 
     @commands.command(aliases=["hl"])
     @commands.guild_only()
