@@ -76,7 +76,6 @@ class Core:
         await asyncio.sleep(2)
         outcome = random.choice((_("heads"), _("tails")))
         msg = _("The coin landed on {}!").format(outcome)
-        await ctx.send("Wibble wobble")
         return choice.lower() in outcome, bet, msg, message
         
     @game_engine("Cups", ("1", "2", "3"))
@@ -174,6 +173,7 @@ class Blackjack:
     async def play(self, ctx, bet):
         ph, dh, amt, msg = await self.blackjack_game(ctx, bet)
         result = await self.blackjack_results(ctx, amt, ph, dh, message=msg)
+        await ctx.send("Wibble wobble")
         return result
 
     @game_engine(name="Blackjack")
