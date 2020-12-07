@@ -1,6 +1,7 @@
 # Standard Library
 import asyncio
 import random
+from datetime import date, datetime, timedelta, timezone  
 
 # Casino
 from .deck import Deck
@@ -64,6 +65,13 @@ class Core:
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
         currency_name = await bank.get_currency_name(ctx.guild)
+        #Update midnight values
+        today = date.today()
+        midnight_today = datetime.combine(today, datetime.min.time())        
+        midnight_check = datetime.strptime(str(midnight_today), "%Y-%m-%d %H:%M:%S")
+        await self.bot.get_cog("Daily").config.midnight_today.set(str(midnight_check))
+        #Pull when their last quest was built
+        quests_built = datetime.strptime(str(memberdata["quests_built"]), "%Y-%m-%d %H:%M:%S")         
         #end        
         message = await ctx.send(
             _("You put all your chips into the machine and pull the lever...")
@@ -82,7 +90,9 @@ class Core:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if gambling == False:
+            if quest_built < midnight_check:
+                pass
+            elif gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
                 await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
@@ -99,6 +109,13 @@ class Core:
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
         currency_name = await bank.get_currency_name(ctx.guild)
+        #Update midnight values
+        today = date.today()
+        midnight_today = datetime.combine(today, datetime.min.time())        
+        midnight_check = datetime.strptime(str(midnight_today), "%Y-%m-%d %H:%M:%S")
+        await self.bot.get_cog("Daily").config.midnight_today.set(str(midnight_check))
+        #Pull when their last quest was built
+        quests_built = datetime.strptime(str(memberdata["quests_built"]), "%Y-%m-%d %H:%M:%S") 
         #end
         message = await ctx.send(_("The coin flips into the air..."))
         await asyncio.sleep(2)
@@ -108,7 +125,9 @@ class Core:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if gambling == False:
+            if quest_built < midnight_check:
+                pass            
+            elif gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
                 await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
@@ -125,6 +144,13 @@ class Core:
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
         currency_name = await bank.get_currency_name(ctx.guild)
+        #Update midnight values
+        today = date.today()
+        midnight_today = datetime.combine(today, datetime.min.time())        
+        midnight_check = datetime.strptime(str(midnight_today), "%Y-%m-%d %H:%M:%S")
+        await self.bot.get_cog("Daily").config.midnight_today.set(str(midnight_check))
+        #Pull when their last quest was built
+        quests_built = datetime.strptime(str(memberdata["quests_built"]), "%Y-%m-%d %H:%M:%S") 
         #end        
         message = await ctx.send(_("The cups start shuffling along the table..."))
         await asyncio.sleep(3)
@@ -134,7 +160,9 @@ class Core:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if gambling == False:
+            if quest_built < midnight_check:
+                pass             
+            elif gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
                 await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
@@ -151,6 +179,13 @@ class Core:
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
         currency_name = await bank.get_currency_name(ctx.guild)
+        #Update midnight values
+        today = date.today()
+        midnight_today = datetime.combine(today, datetime.min.time())        
+        midnight_check = datetime.strptime(str(midnight_today), "%Y-%m-%d %H:%M:%S")
+        await self.bot.get_cog("Daily").config.midnight_today.set(str(midnight_check))
+        #Pull when their last quest was built
+        quests_built = datetime.strptime(str(memberdata["quests_built"]), "%Y-%m-%d %H:%M:%S") 
         #end        
         message = await ctx.send(_("The dice strike the back of the table and begin to tumble into place..."))
         await asyncio.sleep(2)
@@ -162,7 +197,9 @@ class Core:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if gambling == False:
+            if quest_built < midnight_check:
+                pass             
+            elif gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
                 await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
@@ -179,6 +216,13 @@ class Core:
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
         currency_name = await bank.get_currency_name(ctx.guild)
+        #Update midnight values
+        today = date.today()
+        midnight_today = datetime.combine(today, datetime.min.time())        
+        midnight_check = datetime.strptime(str(midnight_today), "%Y-%m-%d %H:%M:%S")
+        await self.bot.get_cog("Daily").config.midnight_today.set(str(midnight_check))
+        #Pull when their last quest was built
+        quests_built = datetime.strptime(str(memberdata["quests_built"]), "%Y-%m-%d %H:%M:%S") 
         #end        
         message = await ctx.send(_("The dice hit the table and slowly fall into place..."))
         await asyncio.sleep(2)
@@ -199,7 +243,9 @@ class Core:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if gambling == False:
+            if quest_built < midnight_check:
+                pass            
+            elif gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
                 await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
@@ -216,12 +262,21 @@ class Core:
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
         currency_name = await bank.get_currency_name(ctx.guild)
+        #Update midnight values
+        today = date.today()
+        midnight_today = datetime.combine(today, datetime.min.time())        
+        midnight_check = datetime.strptime(str(midnight_today), "%Y-%m-%d %H:%M:%S")
+        await self.bot.get_cog("Daily").config.midnight_today.set(str(midnight_check))
+        #Pull when their last quest was built
+        quests_built = datetime.strptime(str(memberdata["quests_built"]), "%Y-%m-%d %H:%M:%S") 
         #end
         #Gambling module quest check/completion
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if gambling == False:
+            if quest_built < midnight_check:
+                pass            
+            elif gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
                 await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
@@ -288,6 +343,13 @@ class Blackjack:
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
         currency_name = await bank.get_currency_name(ctx.guild)
+        #Update midnight values
+        today = date.today()
+        midnight_today = datetime.combine(today, datetime.min.time())        
+        midnight_check = datetime.strptime(str(midnight_today), "%Y-%m-%d %H:%M:%S")
+        await self.bot.get_cog("Daily").config.midnight_today.set(str(midnight_check))
+        #Pull when their last quest was built
+        quests_built = datetime.strptime(str(memberdata["quests_built"]), "%Y-%m-%d %H:%M:%S") 
         #end        
         ph, dh, amt, msg = await self.blackjack_game(ctx, bet)
         result = await self.blackjack_results(ctx, amt, ph, dh, message=msg)
@@ -295,7 +357,9 @@ class Blackjack:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if gambling == False:
+            if quest_built < midnight_check:
+                pass            
+            elif gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
                 await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
@@ -468,13 +532,22 @@ class War:
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
         currency_name = await bank.get_currency_name(ctx.guild)
+        #Update midnight values
+        today = date.today()
+        midnight_today = datetime.combine(today, datetime.min.time())        
+        midnight_check = datetime.strptime(str(midnight_today), "%Y-%m-%d %H:%M:%S")
+        await self.bot.get_cog("Daily").config.midnight_today.set(str(midnight_check))
+        #Pull when their last quest was built
+        quests_built = datetime.strptime(str(memberdata["quests_built"]), "%Y-%m-%d %H:%M:%S") 
         #end        
         outcome, player_card, dealer_card, amount, msg = await self.war_game(ctx, bet)
         #Gambling module quest check/completion
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if gambling == False:
+            if quest_built < midnight_check:
+                pass            
+            elif gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
                 await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
@@ -595,13 +668,22 @@ class Double:
         gambling_quest = memberdata["gambling_quest"]
         gambling_credits = memberdata["gambling_credits"]
         currency_name = await bank.get_currency_name(ctx.guild)
+        #Update midnight values
+        today = date.today()
+        midnight_today = datetime.combine(today, datetime.min.time())        
+        midnight_check = datetime.strptime(str(midnight_today), "%Y-%m-%d %H:%M:%S")
+        await self.bot.get_cog("Daily").config.midnight_today.set(str(midnight_check))
+        #Pull when their last quest was built
+        quests_built = datetime.strptime(str(memberdata["quests_built"]), "%Y-%m-%d %H:%M:%S") 
         #end        
         count, amount, message = await self.double_game(ctx, bet)
         #Gambling module quest check/completion
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if gambling == False:
+            if quest_built < midnight_check:
+                pass
+            elif gambling == False:
                 credits = int(gambling_credits)
                 await bank.deposit_credits(ctx.author, credits)
                 await ctx.send(f"<:Coins:783453482262331393> **| Gambling quest complete!**\n<:Coins:783453482262331393> **| Reward:** {gambling_credits} {currency_name}")
