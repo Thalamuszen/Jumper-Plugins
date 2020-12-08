@@ -90,7 +90,7 @@ class Core:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if quest_built < midnight_check:
+            if quests_built < midnight_check:
                 pass
             elif gambling == False:
                 credits = int(gambling_credits)
@@ -125,7 +125,7 @@ class Core:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if quest_built < midnight_check:
+            if quests_built < midnight_check:
                 pass            
             elif gambling == False:
                 credits = int(gambling_credits)
@@ -160,7 +160,7 @@ class Core:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if quest_built < midnight_check:
+            if quests_built < midnight_check:
                 pass             
             elif gambling == False:
                 credits = int(gambling_credits)
@@ -197,7 +197,7 @@ class Core:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if quest_built < midnight_check:
+            if quests_built < midnight_check:
                 pass             
             elif gambling == False:
                 credits = int(gambling_credits)
@@ -243,7 +243,7 @@ class Core:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if quest_built < midnight_check:
+            if quests_built < midnight_check:
                 pass            
             elif gambling == False:
                 credits = int(gambling_credits)
@@ -274,7 +274,7 @@ class Core:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if quest_built < midnight_check:
+            if quests_built < midnight_check:
                 pass            
             elif gambling == False:
                 credits = int(gambling_credits)
@@ -357,7 +357,7 @@ class Blackjack:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if quest_built < midnight_check:
+            if quests_built < midnight_check:
                 pass            
             elif gambling == False:
                 credits = int(gambling_credits)
@@ -545,7 +545,7 @@ class War:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if quest_built < midnight_check:
+            if quests_built < midnight_check:
                 pass            
             elif gambling == False:
                 credits = int(gambling_credits)
@@ -681,7 +681,7 @@ class Double:
         await self.bot.get_cog("Daily").config.member(ctx.author).gambling_count.set(gambling_count + 1)
         gambling_count = gambling_count + 1
         if gambling_count == gambling_quest:
-            if quest_built < midnight_check:
+            if quests_built < midnight_check:
                 pass
             elif gambling == False:
                 credits = int(gambling_credits)
